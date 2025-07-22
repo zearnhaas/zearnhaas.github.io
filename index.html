@@ -210,40 +210,44 @@
             border: none;
           }
           #go-home-btn {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            font-size: 32px;
-            padding: 10px;
-            background: #4da6ff;
-            border: none;
-            border-radius: 50%;
-            color: #fff;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            transition: width 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
-            overflow: hidden;
-            white-space: nowrap;
-            user-select: none;
-            width: 48px;
-            height: 48px;
-            line-height: 48px;
-            text-align: center;
-          }
-          #go-home-btn.expanded {
-            width: auto;
-            border-radius: 8px;
-            padding: 0 14px;
-            font-weight: 600;
-          }
-          #go-home-btn span {
-            margin-left: 8px;
-            font-size: 1rem;
-            display: none;
-          }
-          #go-home-btn.expanded span {
-            display: inline;
-          }
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 32px;
+  padding: 10px;
+  background: #4da6ff;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: width 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#go-home-btn.expanded {
+  width: auto;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-weight: 600;
+}
+
+#go-home-btn span {
+  margin-left: 8px;
+  font-size: 1rem;
+  display: none;
+}
+
+#go-home-btn.expanded span {
+  display: inline;
+}
         \`;
         document.head.appendChild(style);
 
