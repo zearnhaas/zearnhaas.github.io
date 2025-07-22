@@ -252,10 +252,23 @@
         document.head.appendChild(style);
 
         let countdown = 5;
-        const div = document.createElement('div');
-        div.id = 'countdown';
-        div.textContent = countdown;
-        document.body.appendChild(div);
+
+// Add message above countdown
+const msg = document.createElement('div');
+msg.textContent = "Please wait for Google Classroom to finish loading before the main site ❤️";
+msg.style.fontSize = '20px';
+msg.style.marginBottom = '20px';
+msg.style.textAlign = 'center';
+msg.style.maxWidth = '90%';
+msg.style.lineHeight = '1.4';
+msg.style.color = '#ccc';
+msg.style.fontFamily = 'Poppins, sans-serif';
+document.body.appendChild(msg);
+
+const div = document.createElement('div');
+div.id = 'countdown';
+div.textContent = countdown;
+document.body.appendChild(div);
 
         const interval = setInterval(() => {
           countdown--;
