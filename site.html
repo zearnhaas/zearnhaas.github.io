@@ -34,33 +34,6 @@
     font-size: 2rem;
     letter-spacing: 1px;
   }
-  #bypass-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    max-width: 320px;
-  }
-  #bypass-button {
-    background: #4da6ff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  #bypass-button:hover {
-    background: #3a8dde;
-  }
-  .note {
-    font-size: 0.85rem;
-    margin-top: 6px;
-    max-width: 280px;
-    text-align: right;
-    white-space: normal;
-    line-height: 1.3;
-  }
   main {
     max-width: 1200px;
     margin: 2rem auto;
@@ -94,13 +67,10 @@
     flex-direction: column;
     overflow: hidden;
   }
- .game-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.game-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
+  .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
   .game-image {
     flex-grow: 1;
     overflow: hidden;
@@ -133,18 +103,8 @@
     .games-grid {
       grid-template-columns: repeat(1, 1fr);
     }
-    #bypass-container {
-      align-items: center;
-      max-width: 100%;
-      text-align: center;
-    }
-    .note {
-      text-align: center;
-      max-width: 100%;
-    }
   }
 
-  /* Particle background container */
   #tsparticles {
     position: fixed;
     top: 0; left: 0;
@@ -157,15 +117,12 @@
 </head>
 <body>
 
-<!-- Particle background -->
 <div id="tsparticles"></div>
 
 <header>
   <h1>billybobgames v2</h1>
-  <div id="proxy-button-container" style="width: 320px; display: flex; justify-content: flex-end; align-items: center;">
-    <!-- Proxy button will go here later -->
-  </div>
 </header>
+
 <main>
   <div class="games-grid">
 
@@ -260,15 +217,16 @@
       </div>
     </a>
 
-       <a href="https://zearnhaas.github.io/wbwwb/" class="game-link">
+    <a href="https://zearnhaas.github.io/wbwwb/" class="game-link">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/wbwwb.jpeg" /></div>
         <div class="game-name">We Become What We Behold</div>
       </div>
     </a>
-   
+
   </div>
 </main>
+
 <footer>
   Made with &lt;3 by averageperson4. I don't own any of these games. This site is maintained especially for HAAS network restrictions.<br />
   <a href="https://docs.google.com/forms/d/1xE5A3uYYN02mKgWIO0--GJwjwLFjWhrm-p0ewwLbSYk/" target="_blank" rel="noopener" style="color: #4da6ff; text-decoration: underline;">
@@ -276,7 +234,6 @@
   </a>
 </footer>
 
-<!-- Load tsparticles library from CDN -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 <script>
   tsParticles.load("tsparticles", {
@@ -284,17 +241,11 @@
     fpsLimit: 60,
     interactivity: {
       events: {
-        onHover: {
-          enable: true,
-          mode: "repulse"
-        },
+        onHover: { enable: true, mode: "repulse" },
         resize: true
       },
       modes: {
-        repulse: {
-          distance: 100,
-          duration: 0.4
-        }
+        repulse: { distance: 100, duration: 0.4 }
       }
     },
     particles: {
@@ -321,106 +272,6 @@
       size: { value: { min: 1, max: 4 } }
     },
     detectRetina: true
-  });
-</script>
-
-<script>
-  // Your existing bypass logic below (unchanged, insert here)...
-  // Example from your last code:
-  const bypassContainer = document.getElementById('bypass-container');
-  const bypassButton = document.getElementById('bypass-button');
-
-  window.addEventListener('load', () => {
-    if (sessionStorage.getItem('isBypassed') === 'true') {
-      bypassContainer.style.display = 'none';
-    } else {
-      bypassContainer.style.display = 'flex';
-    }
-  });
-
-  function openGoogleClassroomTab() {
-    window.open('https://classroom.google.com', '_blank');
-  }
-
-  function overwriteCurrentTabWithIframe(url) {
-    sessionStorage.setItem('isBypassed', 'true');
-
-    const iframeHTML = `
-      <!DOCTYPE html>
-      <html style="margin:0; height:100%; overflow:hidden; background: #1e1e1e; color: white; font-family: sans-serif;">
-      <head><title>Bypass Tab</title></head>
-      <body style="margin:0; height:100%; position: relative;">
-        <div id="overlay" style="
-          position: absolute; top: 10px; left: 10px; z-index: 9999;
-          display: flex; flex-direction: column; gap: 10px;
-          color: white;
-          user-select: none;
-        ">
-          <div id="success-icon" style="
-            background: green; border-radius: 50%; width: 36px; height: 36px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: default;
-            transition: width 0.3s ease, padding 0.3s ease;
-            padding: 0;
-            overflow: hidden;
-            white-space: nowrap;
-          " title="GoGuardian bypassed successfully!">✔️</div>
-
-          <button id="go-home-btn" style="
-            background: #4da6ff; color: white; border: none; border-radius: 5px;
-            width: 36px; height: 36px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            padding: 0;
-            overflow: hidden;
-            white-space: nowrap;
-            transition: width 0.3s ease, padding 0.3s ease;
-          " title="Go Home">🏠</button>
-        </div>
-
-        <iframe id="bypass-frame" src="${url}" style="border:none; width:100vw; height:100vh;"></iframe>
-
-        <script>
-          const successIcon = document.getElementById('success-icon');
-          const goHomeBtn = document.getElementById('go-home-btn');
-
-          successIcon.addEventListener('mouseenter', () => {
-            successIcon.style.width = 'auto';
-            successIcon.style.padding = '0 10px';
-            successIcon.textContent = 'GoGuardian bypassed successfully!!';
-          });
-          successIcon.addEventListener('mouseleave', () => {
-            successIcon.style.width = '36px';
-            successIcon.style.padding = '0';
-            successIcon.textContent = '✔️';
-          });
-
-          goHomeBtn.addEventListener('mouseenter', () => {
-            goHomeBtn.style.width = 'auto';
-            goHomeBtn.style.padding = '0 12px';
-            goHomeBtn.textContent = 'Go Home';
-          });
-          goHomeBtn.addEventListener('mouseleave', () => {
-            goHomeBtn.style.width = '36px';
-            goHomeBtn.style.padding = '0';
-            goHomeBtn.textContent = '🏠';
-          });
-
-          goHomeBtn.addEventListener('click', () => {
-            document.getElementById('bypass-frame').src = '${url}';
-          });
-        <\/script>
-      </body>
-      </html>
-    `;
-
-    document.open();
-    document.write(iframeHTML);
-    document.close();
-  }
-
-  bypassButton.addEventListener('click', () => {
-    openGoogleClassroomTab();
-    overwriteCurrentTabWithIframe(window.location.origin);
   });
 </script>
 
