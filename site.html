@@ -6,30 +6,24 @@
 <title>Zearn</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
     background: #2b2b2b;
     color: #e0e0e0;
     position: relative;
   }
-  header {
-    background-color: #3a3a3a;
-    padding: 1.2rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 10;
-  }
+
   #search-container {
-    position: absolute;
-    left: 2rem;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: flex-start;
   }
+
   #search-input {
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -40,96 +34,7 @@
     box-shadow: 0 0 6px rgba(77,166,255,0.3);
     width: 200px;
   }
-  header h1 {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    background: linear-gradient(90deg, #4da6ff, #1e90ff, #4da6ff);
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 8px rgba(77, 166, 255, 0.6);
-  }
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 10;
-  }
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  a.game-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-  .game-card {
-    background: #404040;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
-    text-align: center;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .game-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-  .game-image {
-    flex-grow: 1;
-    overflow: hidden;
-  }
-  .game-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-  .game-name {
-    font-weight: 600;
-    color: #ffffff;
-    background: #333;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-  footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    color: #ccc;
-    font-size: 0.9rem;
-    position: relative;
-    z-index: 10;
-  }
-  @media (max-width: 600px) {
-    .games-grid {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
-  #tsparticles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    pointer-events: none;
-  }
+
   #search-pane {
     margin-top: 0.5rem;
     width: 200px;
@@ -141,6 +46,7 @@
     flex-direction: column;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   }
+
   #search-pane a {
     text-decoration: none;
     color: white;
@@ -149,21 +55,136 @@
     gap: 0.5rem;
     margin: 0.4rem 0;
   }
+
   #search-pane .search-img {
     width: 40px;
     height: 40px;
-    flex-shrink: 0;
     border-radius: 6px;
     overflow: hidden;
+    flex-shrink: 0;
   }
+
   #search-pane .search-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   #search-pane .search-name {
     font-size: 0.9rem;
     white-space: nowrap;
+  }
+
+  header {
+    background-color: #3a3a3a;
+    padding: 5rem 1rem 1.5rem; /* more padding to push logo down */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #4da6ff, #1e90ff, #4da6ff);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(77, 166, 255, 0.6);
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  a.game-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .game-card {
+    background: #404040;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+    text-align: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .game-image {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .game-name {
+    font-weight: 600;
+    color: #ffffff;
+    background: #333;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #ccc;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (max-width: 600px) {
+    .games-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  #tsparticles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
   }
 </style>
 </head>
@@ -171,17 +192,18 @@
 
 <div id="tsparticles"></div>
 
+<div id="search-container">
+  <input type="text" id="search-input" placeholder="Search games..." />
+  <div id="search-pane"></div>
+</div>
+
 <header>
-  <div id="search-container">
-    <input type="text" id="search-input" placeholder="Search games..." />
-    <div id="search-pane"></div>
-  </div>
   <h1>billybobgames v2</h1>
 </header>
 
 <main>
   <div class="games-grid" id="games-grid">
-    <!-- All games go here -->
+    <!-- ALL GAMES INCLUDED BELOW -->
     <a href="https://zearnhaas.github.io/bitlife/" class="game-link"><div class="game-card" data-name="bitlife"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div><div class="game-name">Bitlife</div></div></a>
     <a href="https://zearnhaas.github.io/blockblast/" class="game-link"><div class="game-card" data-name="block blast"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/blockblast.jpeg" alt="Block Blast" /></div><div class="game-name">Block Blast</div></div></a>
     <a href="https://zearnhaas.github.io/cluster-main/" class="game-link"><div class="game-card" data-name="cluster rush"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/clusterrush.jpeg" alt="Cluster Rush" /></div><div class="game-name">Cluster Rush</div></div></a>
@@ -206,7 +228,28 @@
   </a>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 <script>
+  tsParticles.load("tsparticles", {
+    fullScreen: { enable: false },
+    fpsLimit: 60,
+    interactivity: {
+      events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+      modes: { repulse: { distance: 100, duration: 0.4 } }
+    },
+    particles: {
+      color: { value: "#4da6ff" },
+      links: { color: "#4da6ff", distance: 120, enable: true, opacity: 0.2, width: 1 },
+      collisions: { enable: false },
+      move: { enable: true, speed: 1, outModes: { default: "bounce" } },
+      number: { density: { enable: true, area: 800 }, value: 40 },
+      opacity: { value: 0.3 },
+      shape: { type: "circle" },
+      size: { value: { min: 1, max: 4 } }
+    },
+    detectRetina: true
+  });
+
   const searchInput = document.getElementById("search-input");
   const gameCards = document.querySelectorAll(".game-card");
   const searchPane = document.getElementById("search-pane");
