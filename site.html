@@ -20,7 +20,6 @@
   header {
     background-color: #3a3a3a;
     padding: 1.2rem 2rem;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,11 +39,32 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 8px rgba(77, 166, 255, 0.6);
+    flex-shrink: 0;
   }
   @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+  /* New search input styles */
+  #searchInput {
+    background: #404040;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-family: inherit;
+    width: 220px;
+    outline-offset: 2px;
+    box-shadow: 0 0 10px rgba(77,166,255,0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  #searchInput::placeholder {
+    color: #999;
+  }
+  #searchInput:focus {
+    box-shadow: 0 0 15px rgba(77,166,255,0.6);
   }
   main {
     max-width: 1200px;
@@ -132,104 +152,105 @@
 <div id="tsparticles"></div>
 
 <header>
+  <input id="searchInput" type="text" placeholder="Search games..." autocomplete="off" />
   <h1>billybobgames v2</h1>
 </header>
 
 <main>
-  <div class="games-grid">
+  <div class="games-grid" id="gamesGrid">
 
-    <a href="https://zearnhaas.github.io/bitlife/" class="game-link">
+    <a href="https://zearnhaas.github.io/bitlife/" class="game-link" data-name="bitlife">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div>
         <div class="game-name">Bitlife</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/blockblast/" class="game-link">
+    <a href="https://zearnhaas.github.io/blockblast/" class="game-link" data-name="block blast">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/blockblast.jpeg" alt="Block Blast" /></div>
         <div class="game-name">Block Blast</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/cluster-main/" class="game-link">
+    <a href="https://zearnhaas.github.io/cluster-main/" class="game-link" data-name="cluster rush">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/clusterrush.jpeg" alt="Cluster Rush" /></div>
         <div class="game-name">Cluster Rush</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/drivemad/" class="game-link">
+    <a href="https://zearnhaas.github.io/drivemad/" class="game-link" data-name="drive mad">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/drivemad.png" alt="Drive Mad" /></div>
         <div class="game-name">Drive Mad</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/flappybird/" class="game-link">
+    <a href="https://zearnhaas.github.io/flappybird/" class="game-link" data-name="flappy bird">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/flappybird.jpeg" alt="Flappy Bird" /></div>
         <div class="game-name">Flappy Bird</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/minecraft" class="game-link">
+    <a href="https://zearnhaas.github.io/minecraft" class="game-link" data-name="minecraft">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/minecraft.png" alt="Minecraft" /></div>
         <div class="game-name">Minecraft</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/polytrack/" class="game-link">
+    <a href="https://zearnhaas.github.io/polytrack/" class="game-link" data-name="polytrack">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/polytrack.jpeg" alt="Polytrack" /></div>
         <div class="game-name">Polytrack</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/racesurvival/" class="game-link">
+    <a href="https://zearnhaas.github.io/racesurvival/" class="game-link" data-name="race survival">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/racesurvival.jpeg" alt="Race Survival" /></div>
         <div class="game-name">Race Survival</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/retro-bowl/" class="game-link">
+    <a href="https://zearnhaas.github.io/retro-bowl/" class="game-link" data-name="retro bowl">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/retrobowl.jpeg" alt="Retro Bowl" /></div>
         <div class="game-name">Retro Bowl</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/slope/" class="game-link">
+    <a href="https://zearnhaas.github.io/slope/" class="game-link" data-name="slope">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/slope.jpeg" alt="Slope" /></div>
         <div class="game-name">Slope</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/stickmanhook/" class="game-link">
+    <a href="https://zearnhaas.github.io/stickmanhook/" class="game-link" data-name="stickman hook">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/stickmanhook.png" alt="Stickman Hook" /></div>
         <div class="game-name">Stickman Hook</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/subway-surfers/" class="game-link">
+    <a href="https://zearnhaas.github.io/subway-surfers/" class="game-link" data-name="subway surfers">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/subwaysurfers.png" alt="Subway Surfers" /></div>
         <div class="game-name">Subway Surfers</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/tunnel-rush/" class="game-link">
+    <a href="https://zearnhaas.github.io/tunnel-rush/" class="game-link" data-name="tunnel rush">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/tunnelrush.jpeg" alt="Tunnel Rush" /></div>
         <div class="game-name">Tunnel Rush</div>
       </div>
     </a>
 
-    <a href="https://zearnhaas.github.io/wbwwb/" class="game-link">
+    <a href="https://zearnhaas.github.io/wbwwb/" class="game-link" data-name="we become what we behold">
       <div class="game-card">
         <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/wbwwb.jpeg" alt="We Become What We Behold" /></div>
         <div class="game-name">We Become What We Behold</div>
@@ -287,5 +308,37 @@
   });
 </script>
 
-</body>
-</html>
+<script>
+  // Simple fuzzy search utility: Levenshtein distance
+  function levenshtein(a, b) {
+    const matrix = Array.from({length: b.length + 1}, () => []);
+    for (let i = 0; i <= b.length; i++) matrix[i][0] = i;
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b.charAt(i - 1) === a.charAt(j - 1)) matrix[i][j] = matrix[i - 1][j - 1];
+        else matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+      }
+    }
+    return matrix[b.length][a.length];
+  }
+
+  const searchInput = document.getElementById('searchInput');
+  const gamesGrid = document.getElementById('gamesGrid');
+  const gameLinks = Array.from(gamesGrid.getElementsByClassName('game-link'));
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+
+    // If empty, show all
+    if (!query) {
+      gameLinks.forEach(link => link.style.display = '');
+      return;
+    }
+
+    gameLinks.forEach(link => {
+      const name = link.getAttribute('data-name').toLowerCase();
+
+      // Check partial match or fuzzy match threshold
+      const partialMatch = name.includes(query);
+     
