@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zearn</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
   * {
     box-sizing: border-box;
   }
@@ -17,11 +19,10 @@
   }
   header {
     background-color: #3a3a3a;
-    color: white;
     padding: 1.2rem 2rem;
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
@@ -30,9 +31,20 @@
   }
   header h1 {
     margin: 0;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2rem;
-    letter-spacing: 1px;
+    background: linear-gradient(90deg, #4da6ff, #1e90ff, #4da6ff);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(77, 166, 255, 0.6);
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   main {
     max-width: 1200px;
@@ -205,7 +217,7 @@
 
     <a href="https://zearnhaas.github.io/subway-surfers/" class="game-link">
       <div class="game-card">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/subwaysurfers.png" /></div>
+        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/subwaysurfers.png" alt="Subway Surfers" /></div>
         <div class="game-name">Subway Surfers</div>
       </div>
     </a>
@@ -219,7 +231,7 @@
 
     <a href="https://zearnhaas.github.io/wbwwb/" class="game-link">
       <div class="game-card">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/wbwwb.jpeg" /></div>
+        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/wbwwb.jpeg" alt="We Become What We Behold" /></div>
         <div class="game-name">We Become What We Behold</div>
       </div>
     </a>
