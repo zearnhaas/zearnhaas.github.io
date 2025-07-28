@@ -6,10 +6,7 @@
 <title>Zearn</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -22,13 +19,14 @@
     padding: 1.2rem 2rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
     position: relative;
     z-index: 10;
   }
   #search-container {
-    flex: 1;
+    position: absolute;
+    left: 2rem;
     display: flex;
     align-items: center;
   }
@@ -43,7 +41,7 @@
     width: 200px;
   }
   header h1 {
-    margin: 0 auto;
+    margin: 0;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 2rem;
@@ -76,21 +74,16 @@
     color: inherit;
     display: block;
   }
-  a.game-link > .game-card {
-    cursor: pointer;
-  }
   .game-card {
     background: #404040;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
-    padding: 0;
     text-align: center;
-    user-select: none;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
     height: 300px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .game-card:hover {
     transform: translateY(-4px);
@@ -137,6 +130,44 @@
     z-index: 1;
     pointer-events: none;
   }
+  #search-pane {
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 1000px;
+    background: rgba(30,30,30,0.95);
+    border: 1px solid #4da6ff;
+    border-radius: 10px;
+    padding: 1rem;
+    z-index: 20;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  #search-pane a.game-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  #search-pane .game-image {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+  #search-pane .game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  #search-pane .game-name {
+    background: none;
+    padding: 0;
+    font-size: 1rem;
+    color: white;
+  }
 </style>
 </head>
 <body>
@@ -150,114 +181,31 @@
   <h1>billybobgames v2</h1>
 </header>
 
+<div id="search-pane"></div>
+
 <main>
   <div class="games-grid" id="games-grid">
-
-    <!-- Repeat for each game -->
-    <a href="https://zearnhaas.github.io/bitlife/" class="game-link">
-      <div class="game-card" data-name="bitlife">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div>
-        <div class="game-name">Bitlife</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/blockblast/" class="game-link">
-      <div class="game-card" data-name="block blast">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/blockblast.jpeg" alt="Block Blast" /></div>
-        <div class="game-name">Block Blast</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/cluster-main/" class="game-link">
-      <div class="game-card" data-name="cluster rush">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/clusterrush.jpeg" alt="Cluster Rush" /></div>
-        <div class="game-name">Cluster Rush</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/drivemad/" class="game-link">
-      <div class="game-card" data-name="drive mad">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/drivemad.png" alt="Drive Mad" /></div>
-        <div class="game-name">Drive Mad</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/flappybird/" class="game-link">
-      <div class="game-card" data-name="flappy bird">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/flappybird.jpeg" alt="Flappy Bird" /></div>
-        <div class="game-name">Flappy Bird</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/minecraft" class="game-link">
-      <div class="game-card" data-name="minecraft">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/minecraft.png" alt="Minecraft" /></div>
-        <div class="game-name">Minecraft</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/polytrack/" class="game-link">
-      <div class="game-card" data-name="polytrack">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/polytrack.jpeg" alt="Polytrack" /></div>
-        <div class="game-name">Polytrack</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/racesurvival/" class="game-link">
-      <div class="game-card" data-name="race survival">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/racesurvival.jpeg" alt="Race Survival" /></div>
-        <div class="game-name">Race Survival</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/retro-bowl/" class="game-link">
-      <div class="game-card" data-name="retro bowl">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/retrobowl.jpeg" alt="Retro Bowl" /></div>
-        <div class="game-name">Retro Bowl</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/slope/" class="game-link">
-      <div class="game-card" data-name="slope">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/slope.jpeg" alt="Slope" /></div>
-        <div class="game-name">Slope</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/stickmanhook/" class="game-link">
-      <div class="game-card" data-name="stickman hook">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/stickmanhook.png" alt="Stickman Hook" /></div>
-        <div class="game-name">Stickman Hook</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/subway-surfers/" class="game-link">
-      <div class="game-card" data-name="subway surfers">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/subwaysurfers.png" alt="Subway Surfers" /></div>
-        <div class="game-name">Subway Surfers</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/tunnel-rush/" class="game-link">
-      <div class="game-card" data-name="tunnel rush">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/tunnelrush.jpeg" alt="Tunnel Rush" /></div>
-        <div class="game-name">Tunnel Rush</div>
-      </div>
-    </a>
-
-    <a href="https://zearnhaas.github.io/wbwwb/" class="game-link">
-      <div class="game-card" data-name="we become what we behold">
-        <div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/wbwwb.jpeg" alt="We Become What We Behold" /></div>
-        <div class="game-name">We Become What We Behold</div>
-      </div>
-    </a>
-
+    <!-- All game cards included below -->
+    <a href="https://zearnhaas.github.io/bitlife/" class="game-link"><div class="game-card" data-name="bitlife"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div><div class="game-name">Bitlife</div></div></a>
+    <a href="https://zearnhaas.github.io/blockblast/" class="game-link"><div class="game-card" data-name="block blast"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/blockblast.jpeg" alt="Block Blast" /></div><div class="game-name">Block Blast</div></div></a>
+    <a href="https://zearnhaas.github.io/cluster-main/" class="game-link"><div class="game-card" data-name="cluster rush"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/clusterrush.jpeg" alt="Cluster Rush" /></div><div class="game-name">Cluster Rush</div></div></a>
+    <a href="https://zearnhaas.github.io/drivemad/" class="game-link"><div class="game-card" data-name="drive mad"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/drivemad.png" alt="Drive Mad" /></div><div class="game-name">Drive Mad</div></div></a>
+    <a href="https://zearnhaas.github.io/flappybird/" class="game-link"><div class="game-card" data-name="flappy bird"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/flappybird.jpeg" alt="Flappy Bird" /></div><div class="game-name">Flappy Bird</div></div></a>
+    <a href="https://zearnhaas.github.io/minecraft" class="game-link"><div class="game-card" data-name="minecraft"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/minecraft.png" alt="Minecraft" /></div><div class="game-name">Minecraft</div></div></a>
+    <a href="https://zearnhaas.github.io/polytrack/" class="game-link"><div class="game-card" data-name="polytrack"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/polytrack.jpeg" alt="Polytrack" /></div><div class="game-name">Polytrack</div></div></a>
+    <a href="https://zearnhaas.github.io/racesurvival/" class="game-link"><div class="game-card" data-name="race survival"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/racesurvival.jpeg" alt="Race Survival" /></div><div class="game-name">Race Survival</div></div></a>
+    <a href="https://zearnhaas.github.io/retro-bowl/" class="game-link"><div class="game-card" data-name="retro bowl"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/retrobowl.jpeg" alt="Retro Bowl" /></div><div class="game-name">Retro Bowl</div></div></a>
+    <a href="https://zearnhaas.github.io/slope/" class="game-link"><div class="game-card" data-name="slope"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/slope.jpeg" alt="Slope" /></div><div class="game-name">Slope</div></div></a>
+    <a href="https://zearnhaas.github.io/stickmanhook/" class="game-link"><div class="game-card" data-name="stickman hook"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/stickmanhook.png" alt="Stickman Hook" /></div><div class="game-name">Stickman Hook</div></div></a>
+    <a href="https://zearnhaas.github.io/subway-surfers/" class="game-link"><div class="game-card" data-name="subway surfers"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/subwaysurfers.png" alt="Subway Surfers" /></div><div class="game-name">Subway Surfers</div></div></a>
+    <a href="https://zearnhaas.github.io/tunnel-rush/" class="game-link"><div class="game-card" data-name="tunnel rush"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/tunnelrush.jpeg" alt="Tunnel Rush" /></div><div class="game-name">Tunnel Rush</div></div></a>
+    <a href="https://zearnhaas.github.io/wbwwb/" class="game-link"><div class="game-card" data-name="we become what we behold"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/wbwwb.jpeg" alt="We Become What We Behold" /></div><div class="game-name">We Become What We Behold</div></div></a>
   </div>
 </main>
 
 <footer>
   Made with &lt;3 by averageperson4. I don't own any of these games. This site is maintained especially for HAAS network restrictions.<br />
-  <a href="https://docs.google.com/forms/d/1xE5A3uYYN02mKgWIO0--GJwjwLFjWhrm-p0ewwLbSYk/" target="_blank" rel="noopener" style="color: #4da6ff; text-decoration: underline;">
+  <a href="https://docs.google.com/forms/d/1xE5A3uYYN02mKgWIO0--GJwjwLFjWhrm-p0ewwLbSYk/" target="_blank" style="color: #4da6ff; text-decoration: underline;">
     Request a Game/Feedback
   </a>
 </footer>
@@ -268,32 +216,13 @@
     fullScreen: { enable: false },
     fpsLimit: 60,
     interactivity: {
-      events: {
-        onHover: { enable: true, mode: "repulse" },
-        resize: true
-      },
-      modes: {
-        repulse: { distance: 100, duration: 0.4 }
-      }
+      events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+      modes: { repulse: { distance: 100, duration: 0.4 } }
     },
     particles: {
       color: { value: "#4da6ff" },
-      links: {
-        color: "#4da6ff",
-        distance: 120,
-        enable: true,
-        opacity: 0.2,
-        width: 1
-      },
-      collisions: { enable: false },
-      move: {
-        directions: "none",
-        enable: true,
-        outModes: { default: "bounce" },
-        random: false,
-        speed: 1,
-        straight: false
-      },
+      links: { color: "#4da6ff", distance: 120, enable: true, opacity: 0.2, width: 1 },
+      move: { enable: true, speed: 1, outModes: { default: "bounce" } },
       number: { density: { enable: true, area: 800 }, value: 40 },
       opacity: { value: 0.3 },
       shape: { type: "circle" },
@@ -304,19 +233,35 @@
 
   const searchInput = document.getElementById("search-input");
   const gameCards = document.querySelectorAll(".game-card");
+  const searchPane = document.getElementById("search-pane");
 
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
+    searchPane.innerHTML = '';
+    if (query === '') {
+      searchPane.style.display = 'none';
+      return;
+    }
+
+    let results = [];
     gameCards.forEach(card => {
       const name = card.getAttribute("data-name");
       if (name.includes(query)) {
-        card.parentElement.style.display = "block";
-      } else {
-        card.parentElement.style.display = "none";
+        results.push(card.parentElement.cloneNode(true));
       }
     });
+
+    if (results.length > 0) {
+      results.forEach(link => searchPane.appendChild(link));
+      searchPane.style.display = 'block';
+    } else {
+      searchPane.style.display = 'none';
+    }
+  });
+
+  searchInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") e.preventDefault();
   });
 </script>
-
 </body>
 </html>
