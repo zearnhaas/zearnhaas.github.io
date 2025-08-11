@@ -20,8 +20,8 @@
     left: 1rem;
     z-index: 100;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   #search-input {
@@ -33,22 +33,6 @@
     color: white;
     box-shadow: 0 0 6px rgba(77,166,255,0.3);
     width: 200px;
-  }
-
-  #smart-proxy-btn {
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 0 6px rgba(40, 167, 69, 0.7);
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-  }
-  #smart-proxy-btn:hover {
-    background: #218838;
   }
 
   #search-pane {
@@ -210,7 +194,6 @@
 
 <div id="search-container">
   <input type="text" id="search-input" placeholder="Search games..." />
-  <button id="smart-proxy-btn" title="Smart Proxy (unblocks everything)">Smart Proxy (unblocks everything)</button>
   <div id="search-pane"></div>
 </div>
 
@@ -220,7 +203,7 @@
 
 <main>
   <div class="games-grid" id="games-grid">
-    <a href="https://zearnhaas.github.io/bitlife/" class="game-link"><div class="game-card" data-name="bitlife"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div><div class="game-name">Bitlife</div></div></a>
+        <a href="https://zearnhaas.github.io/bitlife/" class="game-link"><div class="game-card" data-name="bitlife"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div><div class="game-name">Bitlife</div></div></a>
     <a href="https://zearnhaas.github.io/blockblast/" class="game-link"><div class="game-card" data-name="block blast"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/blockblast.jpeg" alt="Block Blast" /></div><div class="game-name">Block Blast</div></div></a>
     <a href="https://zearnhaas.github.io/cluster-main/" class="game-link"><div class="game-card" data-name="cluster rush"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/clusterrush.jpeg" alt="Cluster Rush" /></div><div class="game-name">Cluster Rush</div></div></a>
     <a href="https://zearnhaas.github.io/drivemad/" class="game-link"><div class="game-card" data-name="drive mad"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/drivemad.png" alt="Drive Mad" /></div><div class="game-name">Drive Mad</div></div></a>
@@ -304,13 +287,6 @@
 
   searchInput.addEventListener("keydown", e => {
     if (e.key === "Enter") e.preventDefault();
-  });
-
-  // Example: Button click event for Smart Proxy
-  const smartProxyBtn = document.getElementById('smart-proxy-btn');
-  smartProxyBtn.addEventListener('click', () => {
-    // Put your Smart Proxy action here
-    alert('Smart Proxy button clicked! Implement your proxy logic.');
   });
 </script>
 </body>
