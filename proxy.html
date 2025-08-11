@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -76,7 +76,6 @@
       width: 100%;
       border: none;
     }
-    /* Fallback styles */
     #fallback-screen {
       display: none;
       flex-direction: column;
@@ -168,16 +167,13 @@
   let fallbackInterval = null;
   let fallbackStartTime = null;
 
+  // Updated ping function: uses GET + no-cors to avoid CORS rejections
   function pingServer(url) {
-    // Use fetch with HEAD to check server availability quickly
-    return fetch(url, { method: 'HEAD', mode: 'cors' })
-      .then(response => {
-        return response.ok;
-      })
+    return fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' })
+      .then(() => true) // If fetch didn't throw, we assume the server is reachable
       .catch(() => false);
   }
 
-  // Load the selected server in the iframe and hide others
   function connectToServer(url) {
     isConnected = true;
     clearInterval(fallbackInterval);
@@ -189,7 +185,6 @@
     proxyFrame.src = url;
   }
 
-  // Show fallback screen with smaller loading bar and status text
   function showFallback() {
     app.style.display = 'none';
     iframeContainer.style.display = 'none';
@@ -209,7 +204,6 @@
       const server = servers[pingIndex];
       fallbackStatusText.textContent = `Pinging server ${pingIndex + 1}...`;
 
-      // Update loading bar (fill percent based on current server out of total)
       const progressPercent = ((pingIndex + 1) / servers.length) * 100;
       fallbackLoadingBar.style.width = `${progressPercent}%`;
 
@@ -217,20 +211,17 @@
 
       if (alive) {
         connectToServer(server);
-        clearInterval(fallbackInterval);
         return;
       } else {
         pingIndex++;
         if (pingIndex >= servers.length) {
           pingIndex = 0;
-          // After a full cycle, keep trying and reset loading bar smoothly
           fallbackLoadingBar.style.width = '0%';
         }
       }
     }, 1000);
   }
 
-  // Initial routine: ping each server once sequentially with 1s delay, then fallback if none respond
   async function initialConnect() {
     for (let i = 0; i < servers.length; i++) {
       if (isConnected) return;
@@ -242,10 +233,8 @@
         connectToServer(servers[i]);
         return;
       }
-      // Wait 1 second before next ping
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
-    // None responded, show fallback screen
     showFallback();
   }
 
@@ -265,9 +254,7 @@
     }
   });
 
-  // Start initial connection attempts
   initialConnect();
-
 </script>
 </body>
 </html>
