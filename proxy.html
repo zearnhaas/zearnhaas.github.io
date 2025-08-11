@@ -70,11 +70,32 @@
       height: 100vh;
       display: none;
       flex-direction: column;
+      position: relative;
     }
     #proxy-frame {
       flex-grow: 1;
       width: 100%;
       border: none;
+    }
+    /* Proxy Home Button Overlay */
+    #proxy-home-btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: rgba(26, 115, 232, 0.9);
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: none;
+    }
+    #proxy-home-btn:hover {
+      background: rgba(26, 115, 232, 1);
     }
     #fallback-screen {
       display: none;
@@ -131,6 +152,9 @@
     <iframe id="proxy-frame" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
   </div>
 
+  <!-- Overlay button -->
+  <div id="proxy-home-btn">Proxy Home</div>
+
   <div id="fallback-screen">
     <div>All servers are currently sleeping/down.<br />Please wait as we try to wake them.<br />
       If this takes more than a minute, please send feedback <a href="https://docs.google.com/forms/d/1xE5A3uYYN02mKgWIO0--GJwjwLFjWhrm-p0ewwLbSYk/" target="_blank" rel="noopener noreferrer">here</a>.
@@ -156,6 +180,7 @@
 
   const iframeContainer = document.getElementById('iframe-container');
   const proxyFrame = document.getElementById('proxy-frame');
+  const proxyHomeBtn = document.getElementById('proxy-home-btn');
 
   const fallbackScreen = document.getElementById('fallback-screen');
   const fallbackLoadingBar = document.getElementById('fallback-loading-bar');
@@ -167,10 +192,9 @@
   let fallbackInterval = null;
   let fallbackStartTime = null;
 
-  // Updated ping function: uses GET + no-cors to avoid CORS rejections
   function pingServer(url) {
     return fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' })
-      .then(() => true) // If fetch didn't throw, we assume the server is reachable
+      .then(() => true)
       .catch(() => false);
   }
 
@@ -181,6 +205,7 @@
     app.style.display = 'none';
     fallbackScreen.style.display = 'none';
     iframeContainer.style.display = 'flex';
+    proxyHomeBtn.style.display = 'block'; // Show the overlay button
 
     proxyFrame.src = url;
   }
@@ -189,6 +214,7 @@
     app.style.display = 'none';
     iframeContainer.style.display = 'none';
     fallbackScreen.style.display = 'flex';
+    proxyHomeBtn.style.display = 'none';
 
     fallbackStartTime = Date.now();
     pingIndex = 0;
@@ -252,6 +278,15 @@
     if (choice >= 1 && choice <= servers.length) {
       connectToServer(servers[choice - 1]);
     }
+  });
+
+  // When "Proxy Home" button is clicked
+  proxyHomeBtn.addEventListener('click', () => {
+    iframeContainer.style.display = 'none';
+    proxyHomeBtn.style.display = 'none';
+    app.style.display = 'flex';
+    isConnected = false;
+    initialConnect();
   });
 
   initialConnect();
