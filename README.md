@@ -6,6 +6,7 @@
 
 This is a recreation of the now-defunct **billybobgames.github.io**.  
 It’s maintained specifically to function reliably at my school throughout the school year.
+If anyone not from my school is seeing this, yes I know the password system is extremely weak. It is only meant to keep out the dumbahh opps. I will get a better security system if they find it out. (im just too lazy to do it in the first place lmao)
 
 ---
 
