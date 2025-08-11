@@ -186,6 +186,28 @@
     z-index: 1;
     pointer-events: none;
   }
+
+  /* Smart Proxy button styles */
+  #smart-proxy-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.7);
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    z-index: 101;
+  }
+
+  #smart-proxy-btn:hover {
+    background: #218838;
+  }
 </style>
 </head>
 <body>
@@ -197,13 +219,16 @@
   <div id="search-pane"></div>
 </div>
 
+<!-- Smart Proxy button fixed top-right -->
+<button id="smart-proxy-btn" title="Smart Proxy (unblocks everything)">Smart Proxy (unblocks everything)</button>
+
 <header>
   <h1>billybobgames v2</h1>
 </header>
 
 <main>
   <div class="games-grid" id="games-grid">
-        <a href="https://zearnhaas.github.io/bitlife/" class="game-link"><div class="game-card" data-name="bitlife"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div><div class="game-name">Bitlife</div></div></a>
+    <a href="https://zearnhaas.github.io/bitlife/" class="game-link"><div class="game-card" data-name="bitlife"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/bitlife.jpeg" alt="Bitlife" /></div><div class="game-name">Bitlife</div></div></a>
     <a href="https://zearnhaas.github.io/blockblast/" class="game-link"><div class="game-card" data-name="block blast"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/blockblast.jpeg" alt="Block Blast" /></div><div class="game-name">Block Blast</div></div></a>
     <a href="https://zearnhaas.github.io/cluster-main/" class="game-link"><div class="game-card" data-name="cluster rush"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/clusterrush.jpeg" alt="Cluster Rush" /></div><div class="game-name">Cluster Rush</div></div></a>
     <a href="https://zearnhaas.github.io/drivemad/" class="game-link"><div class="game-card" data-name="drive mad"><div class="game-image"><img src="https://raw.githubusercontent.com/zearnhaas/zearnhaas.github.io/main/siteimages/gamelogos/drivemad.png" alt="Drive Mad" /></div><div class="game-name">Drive Mad</div></div></a>
@@ -287,6 +312,11 @@
 
   searchInput.addEventListener("keydown", e => {
     if (e.key === "Enter") e.preventDefault();
+  });
+
+  const smartProxyBtn = document.getElementById('smart-proxy-btn');
+  smartProxyBtn.addEventListener('click', () => {
+    window.location.href = "https://zearnhaas.github.io/proxy";
   });
 </script>
 </body>
