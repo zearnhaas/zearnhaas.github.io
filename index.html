@@ -45,11 +45,6 @@
       display: flex;
       gap: 40px;
       z-index: 10;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      max-width: 720px;
-      padding: 0 20px;
     }
     button {
       background: #4da6ff;
@@ -61,16 +56,9 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       min-width: 220px;
-      white-space: nowrap;
     }
     button:hover {
       background: #3a8dde;
-    }
-    #smart-proxy-button {
-      background: #4caf50;
-    }
-    #smart-proxy-button:hover {
-      background: #45a049;
     }
     #tsparticles {
       position: fixed;
@@ -160,15 +148,12 @@
 
   <div id="button-container">
     <button id="bypass-button">GoGuardian Fix</button>
-
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <a href="site.html" style="font-size: 14px; color: #aaa; text-decoration: underline; cursor: pointer;">
         No GoGuardian Fix
       </a>
       <div style="font-size: 12px; color: #666;">less features</div>
     </div>
-
-    <button id="smart-proxy-button" onclick="window.open('proxy.html', '_blank')">Smart Proxy (unblocks everything)</button>
   </div>
 </div>
 
@@ -209,7 +194,7 @@
 
   bypassBtn.addEventListener('click', () => {
     const newTab = window.open('about:blank');
-    newTab.opener = null;
+newTab.opener = null;
     if (!newTab) {
       alert("Pop-up blocked! Please allow pop-ups for this site.");
       return;
