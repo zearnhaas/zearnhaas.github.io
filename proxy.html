@@ -77,7 +77,6 @@
       width: 100%;
       border: none;
     }
-    /* Proxy Home Button Overlay */
     #proxy-home-btn {
       position: fixed;
       top: 15px;
@@ -152,7 +151,6 @@
     <iframe id="proxy-frame" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
   </div>
 
-  <!-- Overlay button -->
   <div id="proxy-home-btn">Proxy Home</div>
 
   <div id="fallback-screen">
@@ -192,6 +190,10 @@
   let fallbackInterval = null;
   let fallbackStartTime = null;
 
+  // --- NEW: get target URL from query string ---
+  const params = new URLSearchParams(window.location.search);
+  const targetURL = params.get('url'); // e.g., https://youtube.com
+
   function pingServer(url) {
     return fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-store' })
       .then(() => true)
@@ -205,9 +207,14 @@
     app.style.display = 'none';
     fallbackScreen.style.display = 'none';
     iframeContainer.style.display = 'flex';
-    proxyHomeBtn.style.display = 'block'; // Show the overlay button
+    proxyHomeBtn.style.display = 'block';
 
-    proxyFrame.src = url;
+    if (targetURL) {
+      // Append target URL if provided
+      proxyFrame.src = url + "?url=" + encodeURIComponent(targetURL);
+    } else {
+      proxyFrame.src = url;
+    }
   }
 
   function showFallback() {
@@ -268,7 +275,11 @@
     const manual = prompt('Choose server:\n1. Server 1\n2. Server 2\n3. Server 3\n\nEnter 1, 2, or 3');
     const choice = parseInt(manual);
     if (choice >= 1 && choice <= servers.length) {
-      connectToServer(servers[choice - 1]);
+      if (targetURL) {
+        connectToServer(servers[choice - 1] + "?url=" + encodeURIComponent(targetURL));
+      } else {
+        connectToServer(servers[choice - 1]);
+      }
     }
   });
 
@@ -276,11 +287,14 @@
     const manual = prompt('Choose server:\n1. Server 1\n2. Server 2\n3. Server 3\n\nEnter 1, 2, or 3');
     const choice = parseInt(manual);
     if (choice >= 1 && choice <= servers.length) {
-      connectToServer(servers[choice - 1]);
+      if (targetURL) {
+        connectToServer(servers[choice - 1] + "?url=" + encodeURIComponent(targetURL));
+      } else {
+        connectToServer(servers[choice - 1]);
+      }
     }
   });
 
-  // When "Proxy Home" button is clicked
   proxyHomeBtn.addEventListener('click', () => {
     iframeContainer.style.display = 'none';
     proxyHomeBtn.style.display = 'none';
