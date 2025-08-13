@@ -148,17 +148,11 @@
 
   <div id="button-container">
     <button id="bypass-button">GoGuardian Fix</button>
-
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-top: 10px;">
-      
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <a href="site.html" style="font-size: 14px; color: #aaa; text-decoration: underline; cursor: pointer;">
         No GoGuardian Fix
       </a>
       <div style="font-size: 12px; color: #666;">less features</div>
-
-      <button class="bypass-site" data-url="https://www.zearn.org/">Zearn</button>
-      <button class="bypass-site" data-url="https://clever.com/">Clever</button>
-
     </div>
   </div>
 </div>
@@ -200,7 +194,7 @@
 
   bypassBtn.addEventListener('click', () => {
     const newTab = window.open('about:blank');
-    newTab.opener = null;
+newTab.opener = null;
     if (!newTab) {
       alert("Pop-up blocked! Please allow pop-ups for this site.");
       return;
@@ -308,124 +302,6 @@
     script.textContent = code;
     newTab.document.body.innerHTML = '';
     newTab.document.body.appendChild(script);
-  });
-
-  // New bypass buttons for Zearn and Clever
-  const bypassSiteButtons = document.querySelectorAll('.bypass-site');
-
-  bypassSiteButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const siteURL = btn.dataset.url;
-      const newTab = window.open('about:blank');
-      newTab.opener = null;
-      if (!newTab) {
-        alert("Pop-up blocked! Please allow pop-ups for this site.");
-        return;
-      }
-
-      window.location.href = siteURL;
-
-      const code = `
-        document.title = "${btn.textContent}";
-
-        const favicon = document.createElement('link');
-        favicon.rel = 'icon';
-        favicon.href = 'https://zearnhaas.github.io/siteimages/apple-touch-icon.png';
-        document.head.appendChild(favicon);
-
-        const style = document.createElement('style');
-        style.textContent = \`
-          body {
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; font-size: 48px; font-family: sans-serif;
-            color: white; background: #121212; margin: 0;
-          }
-          #countdown {
-            user-select: none;
-          }
-          iframe {
-            width: 100vw;
-            height: 100vh;
-            border: none;
-          }
-          #go-home-btn {
-            position: fixed; top: 15px; right: 15px; font-size: 32px;
-            padding: 10px; background: #4da6ff; border: none; border-radius: 50%;
-            color: #fff; cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            transition: width 0.3s ease, border-radius 0.3s ease, padding 0.3s ease;
-            overflow: hidden; white-space: nowrap;
-            user-select: none; width: 48px; height: 48px;
-            display: flex; align-items: center; justify-content: center;
-          }
-          #go-home-btn.expanded {
-            width: auto; border-radius: 8px; padding: 0 14px; font-weight: 600;
-          }
-          #go-home-btn span {
-            margin-left: 8px; font-size: 1rem; display: none;
-          }
-          #go-home-btn.expanded span {
-            display: inline;
-          }
-        \`;
-        document.head.appendChild(style);
-
-        let countdown = 5;
-
-        const msg = document.createElement('div');
-        msg.textContent = "please wait for ${btn.textContent} to finish loading before the main site ❤️.";
-        msg.style.fontSize = '20px';
-        msg.style.marginBottom = '20px';
-        msg.style.textAlign = 'center';
-        msg.style.maxWidth = '90%';
-        msg.style.lineHeight = '1.4';
-        msg.style.color = '#ccc';
-        msg.style.fontFamily = 'Poppins, sans-serif';
-        document.body.appendChild(msg);
-
-        const div = document.createElement('div');
-        div.id = 'countdown';
-        div.textContent = countdown;
-        document.body.appendChild(div);
-
-        const interval = setInterval(() => {
-          countdown--;
-          if (countdown <= 0) {
-            clearInterval(interval);
-            div.textContent = 'Loading...';
-
-            const iframe = document.createElement('iframe');
-            iframe.src = 'site.html';
-            document.body.innerHTML = '';
-            document.body.appendChild(iframe);
-
-            const goHomeBtn = document.createElement('button');
-            goHomeBtn.id = 'go-home-btn';
-            goHomeBtn.title = 'Go Home';
-            goHomeBtn.innerHTML = '🏠<span>Go Home</span>';
-
-            goHomeBtn.addEventListener('mouseenter', () => {
-              goHomeBtn.classList.add('expanded');
-            });
-            goHomeBtn.addEventListener('mouseleave', () => {
-              goHomeBtn.classList.remove('expanded');
-            });
-            goHomeBtn.addEventListener('click', () => {
-              iframe.src = iframe.src;
-            });
-
-            document.body.appendChild(goHomeBtn);
-          } else {
-            div.textContent = countdown;
-          }
-        }, 1000);
-      `;
-
-      const script = newTab.document.createElement('script');
-      script.textContent = code;
-      newTab.document.body.innerHTML = '';
-      newTab.document.body.appendChild(script);
-    });
   });
 
   function checkPassword() {
