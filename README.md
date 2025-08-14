@@ -13,7 +13,7 @@ If anyone not from my school is seeing this, yes I know the password system is e
 ## ✅ Project Goals
 
 - 🌐 **Fully Functional Proxy:**  
-  Make a smart proxy site that automatically finds a good proxy for the user. We would host our own proxies, and if it couldnt connect to one of ours, it would try pinging a large list of third party proxies that is constantly being maintained. The user would never have to try multiple proxies, as the system would do everything automatically.
+  Figure out how to make the game cards directly link to a link on the proxy
 
 ---
 
