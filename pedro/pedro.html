@@ -2,26 +2,40 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My Friend Pedro - Fullscreen</title>
-  <!-- Ruffle JS from root /ruffle/ folder -->
+  <title>My Friend Pedro - Fullscreen with Border</title>
   <script src="../ruffle/ruffle.js"></script>
   <style>
     html, body {
       margin: 0;
       height: 100%;
       background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
       font-family: sans-serif;
       color: #fff;
     }
+
     #game-container {
       width: 100%;
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px; /* optional padding around the border */
+      box-sizing: border-box;
     }
+
     ruffle-embed, canvas {
-      width: 100% !important;
-      height: 100% !important;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto !important;
+      height: auto !important;
       display: block;
+      border: 8px solid #fff;    /* fancy border */
+      border-radius: 16px;       /* rounded corners */
+      box-shadow: 0 0 20px rgba(255,255,255,0.5); /* subtle glow */
     }
   </style>
 </head>
@@ -29,20 +43,16 @@
   <div id="game-container"></div>
 
   <script>
-    // Create Ruffle player manually
     const ruffle = window.RufflePlayer.newest();
     const player = ruffle.createPlayer();
-
-    // Append player to container
     document.getElementById("game-container").appendChild(player);
 
-    // Enable debug logging (optional)
+    // Optional: debug logging
     ruffle.log_level = "debug";
 
-    // Load the SWF from the same folder as this HTML
+    // Load your SWF
     player.load("my-friend-pedro-1598012ef.swf");
 
-    // Catch errors
     player.addEventListener("error", (e) => {
       console.error("Ruffle error:", e.message);
     });
