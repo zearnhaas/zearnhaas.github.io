@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My Friend Pedro</title>
-  <!-- Go up one folder to reach /ruffle/ -->
+  <title>My Friend Pedro (Debug)</title>
   <script src="../ruffle/ruffle.js"></script>
   <style>
     body {
@@ -13,16 +12,54 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      flex-direction: column;
+      color: #fff;
+      font-family: sans-serif;
     }
-
     embed {
       border: 4px solid #fff;
       border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    #log {
+      max-width: 800px;
+      overflow: auto;
+      font-size: 12px;
+      line-height: 1.2;
+      background: #222;
+      padding: 10px;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
-  <!-- SWF is in the same folder as pedro.html -->
-  <embed src="game.swf" width="800" height="600">
+  <embed id="game" src="game.swf" width="800" height="600">
+  <div id="log">Ruffle debug log:</div>
+
+  <script>
+    // Create a Ruffle player manually
+    const ruffle = window.RufflePlayer.newest();
+    const player = ruffle.createPlayer();
+    document.body.replaceChild(player, document.getElementById("game"));
+
+    // Enable debug logging
+    ruffle.log_level = "debug";
+
+    // Log messages to the #log div
+    const logDiv = document.getElementById("log");
+    const originalConsoleLog = console.log;
+    console.log = function(...args) {
+      originalConsoleLog(...args);
+      logDiv.innerHTML += "<br>" + args.join(" ");
+    };
+
+    // Load the main SWF
+    player.load("game.swf");
+
+    // Catch player errors
+    player.addEventListener("error", (e) => {
+      logDiv.innerHTML += "<br><b>Error:</b> " + e.message;
+    });
+  </script>
 </body>
 </html>
