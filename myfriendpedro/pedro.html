@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>My Friend Pedro</title>
-  <script src="ruffle/ruffle.js"></script>
+  <!-- Go up one folder to reach /ruffle/ -->
+  <script src="../ruffle/ruffle.js"></script>
   <style>
     body {
       background: #111;
@@ -13,6 +14,7 @@
       height: 100vh;
       margin: 0;
     }
+
     embed {
       border: 4px solid #fff;
       border-radius: 8px;
@@ -20,6 +22,7 @@
   </style>
 </head>
 <body>
-  <embed src="myfriendpedro/myfriendpedro.swf" width="800" height="600">
+  <!-- SWF is in the same folder as pedro.html -->
+  <embed src="myfriendpedro.swf" width="800" height="600">
 </body>
 </html>
