@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home</title>
-  <link rel="icon" href="https://zearnhaas.github.io/siteimages/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="https://zearnhaas.github.io/siteimages/apple-touch-icon.png" type="image/png">
+  <link rel="icon" href="./siteimages/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="./siteimages/apple-touch-icon.png" type="image/png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
@@ -207,7 +207,7 @@ newTab.opener = null;
 
       const favicon = document.createElement('link');
       favicon.rel = 'icon';
-      favicon.href = 'https://zearnhaas.github.io/siteimages/apple-touch-icon.png';
+      favicon.href = './siteimages/apple-touch-icon.png';
       document.head.appendChild(favicon);
 
       const style = document.createElement('style');
@@ -306,7 +306,7 @@ newTab.opener = null;
 
   function checkPassword() {
     const input = document.getElementById("passwordInput").value;
-    if (input === "magpie") {
+    if (input === "lebronjames") {
       document.getElementById("passwordScreen").style.display = "none";
       document.getElementById("realContent").style.display = "flex";
     } else {
